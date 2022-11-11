@@ -44,25 +44,25 @@
                 </div>
             </div>
             <div class="ui divider" style="height: 50px;"></div> 
-        <section >
-            <label for="loadFileInput" class="button"
-            id = "loadFileBtn">
-            Load Audio File 
-            </label>
-            <input           
-            accept=".wav,.mp3,.oga,.aac,.flac"
-            className="recorder__input"
-            type="file" 
-            id="loadFileInput">
-            <!-- <button id="update">
-                Update
-            </button> -->
-            <a id = 'loadFileURL1' class="button">R2D2</a>
-            <a id = 'loadFileURL2' class="button">Theremin</a>
-        </section>
-        <section>
-            <audio id="audio" controls autostart="0" autostart="false" preload ="none"></audio>
-        </section>
+            <section >
+                <label for="loadFileInput" class="button"
+                id = "loadFileBtn">
+                Load Audio File 
+                </label>
+                <input           
+                accept=".wav,.mp3,.oga,.aac,.flac"
+                className="recorder__input"
+                type="file" 
+                id="loadFileInput">
+                <!-- <button id="update">
+                    Update
+                </button> -->
+                <a id = 'loadFileURL1' class="button">R2D2</a>
+                <a id = 'loadFileURL2' class="button">Theremin</a>
+            </section>
+            <section>
+                <audio id="audio" controls autostart="0" autostart="false" preload ="none"></audio>
+            </section>
             <script>
                 exports = {};
             </script>
@@ -87,8 +87,7 @@
                         });
                 }
             </script>
-            <script src="./ringbuf.js/index.js"></script>
-            
+            <script src="./ringbuf.js/index.js"></script> 
             <script type="module" src="./main.js"></script>
         </div>
     </body>
