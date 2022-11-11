@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
+        />
+        <title>hyperstep volumetric</title>
+    </head>
+    <body style="background-color:  #000000!important;">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js" integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw==" crossorigin="anonymous"></script>
+          
+        <div class="ui main_wrapper landing-image">
+            <div class="ui header centered" id="header">
+                <div>
+                    <h2 class="ui header white-text" style="color: azure;">
+                        Real-time mel-spectrogram visualization
+                    </h2>
+                </div>
+
+
+            <div class="ui divider" style="height: 5px; width: 2px;"></div>
+                
+            <div class="body-container">
+                <div class="ui centered one column grid container">
+                    <div class="ui vertical buttons row" id="recordButtonContainer">
+                        <center>
+                            <button id="recordButton" class="ui red inverted big button record-button" role="switch">
+                                Mic &nbsp;&nbsp;<i class="microphone icon"></i>
+                            </button>
+                        </center>
+                    </div>
+
+                    <canvas
+                        id="axesDiv"
+                        class="ui centered"
+                        style="width: 800px; height: 388px; background-color: transparent;"
+                    ></div>
+                </div>
+            </div>
+            <div class="ui divider" style="height: 50px;"></div> 
+        <section >
+            <label for="loadFileInput" class="button"
+            id = "loadFileBtn">
+            Load Audio File 
+            </label>
+            <input           
+            accept=".wav,.mp3,.oga,.aac,.flac"
+            className="recorder__input"
+            type="file" 
+            id="loadFileInput">
+            <!-- <button id="update">
+                Update
+            </button> -->
+            <a id = 'loadFileURL1' class="button">R2D2</a>
+            <a id = 'loadFileURL2' class="button">Theremin</a>
+        </section>
+        <section>
+            <audio id="audio" controls autostart="0" autostart="false" preload ="none"></audio>
+        </section>
+            <script>
+                exports = {};
+            </script>
+            <script>
+                // From a series of URL to js files, get an object URL that can be loaded in an
+                // AudioWorklet. This is useful to be able to use multiple files (utils, data
+                // structure, main DSP, etc.) without either using static imports, eval, manual
+                // concatenation with or without a build step, etc.
+                function URLFromFiles(files) {
+                    const promises = files
+                        .map((file) => fetch(file)
+                            .then((response) => response.text()));
+
+                    return Promise
+                        .all(promises)
+                        .then((texts) => {
+                            texts.unshift("var exports = {};"); // hack to make injected umd modules work
+                            const text = texts.join('');
+                            const blob = new Blob([text], {type: "application/javascript"});
+
+                            return URL.createObjectURL(blob);
+                        });
+                }
+            </script>
+            <script src="./ringbuf.js/index.js"></script> 
+            <script type="module" src="./main.js"></script>
+        </div>
+    </body>
+</html>
